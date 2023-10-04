@@ -1,0 +1,54 @@
+Input_size=224x224x3
+
+3x3 Conv, 64 - Stride 1, zeroPadding 1
+Relu
+3x3 Conv, 64 - Stride 1, zeroPadding 1
+Relu
+
+pool, 2x2 pixel, stride 2
+
+3x3 Conv, 128 - Stride 1, zeroPadding 1
+Relu
+3x3 Conv, 128 - Stride 1, zeroPadding 1
+Relu
+
+pool, 2x2 pixel, stride 2
+
+3x3 Conv, 256 - Stride 1, zeroPadding 1
+Relu
+3x3 Conv, 256 - Stride 1, zeroPadding 1
+Relu
+3x3 Conv, 256 - Stride 1, zeroPadding 1
+Relu
+
+pool, 2x2 pixel, stride 2
+
+3x3 Conv, 512 - Stride 1, zeroPadding 1
+Relu
+3x3 Conv, 512 - Stride 1, zeroPadding 1
+Relu
+3x3 Conv, 512 - Stride 1, zeroPadding 1
+Relu
+
+pool, 2x2 pixel, stride 2
+
+3x3 Conv, 512 - Stride 1, zeroPadding 1
+Relu 
+3x3 Conv, 512 - Stride 1, zeroPadding 1
+Relu
+3x3 Conv, 512 - Stride 1, zeroPadding 1
+Relu
+
+pool, 2x2 pixel, stride 2
+
+fc 4096
+Relu
+fc 4096
+Relu
+fc 1000
+
+SoftMax
+
+Source: 
+https://iq.opengenus.org/vgg19-architecture/
+https://medium.com/@mygreatlearning/everything-you-need-to-know-about-vgg16-7315defb5918
