@@ -1,53 +1,53 @@
 Input_size=224x224x3
 
-3x3 Conv, 64 - Stride 1, zeroPadding 1
-Relu
-3x3 Conv, 64 - Stride 1, zeroPadding 1
-Relu
+3x3 Conv, 64 - Stride 1, zeroPadding 1 - 224, 224, 3, 64, 3, 1, 1
+Relu,
+3x3 Conv, 64 - Stride 1, zeroPadding 1 - 224, 224, 64, 64, 3, 1, 1
+Relu,
 
 pool, 2x2 pixel, stride 2
 
-3x3 Conv, 128 - Stride 1, zeroPadding 1
-Relu
-3x3 Conv, 128 - Stride 1, zeroPadding 1
-Relu
+3x3 Conv, 128 - Stride 1, zeroPadding 1 - 112, 112, 64, 128, 3, 1, 1
+Relu,
+3x3 Conv, 128 - Stride 1, zeroPadding 1 - 112, 112, 128, 128, 3, 1, 1
+Relu,
 
 pool, 2x2 pixel, stride 2
 
-3x3 Conv, 256 - Stride 1, zeroPadding 1
-Relu
-3x3 Conv, 256 - Stride 1, zeroPadding 1
-Relu
-3x3 Conv, 256 - Stride 1, zeroPadding 1
-Relu
+3x3 Conv, 256 - Stride 1, zeroPadding 1 - 56, 56, 128, 256, 3, 1, 1
+Relu,
+3x3 Conv, 256 - Stride 1, zeroPadding 1 - 56, 56, 256, 256, 3, 1, 1
+Relu,
+3x3 Conv, 256 - Stride 1, zeroPadding 1 - 56, 56, 256, 256, 3, 1, 1
+Relu,
 
 pool, 2x2 pixel, stride 2
 
-3x3 Conv, 512 - Stride 1, zeroPadding 1
-Relu
-3x3 Conv, 512 - Stride 1, zeroPadding 1
-Relu
-3x3 Conv, 512 - Stride 1, zeroPadding 1
-Relu
+3x3 Conv, 512 - Stride 1, zeroPadding 1 - 28, 28, 256, 512, 3, 1, 1
+Relu,
+3x3 Conv, 512 - Stride 1, zeroPadding 1 - 28, 28, 512, 512, 3, 1, 1
+Relu,
+3x3 Conv, 512 - Stride 1, zeroPadding 1 - 28, 28, 512, 512, 3, 1, 1
+Relu,
 
 pool, 2x2 pixel, stride 2
 
-3x3 Conv, 512 - Stride 1, zeroPadding 1
-Relu 
-3x3 Conv, 512 - Stride 1, zeroPadding 1
-Relu
-3x3 Conv, 512 - Stride 1, zeroPadding 1
-Relu
+3x3 Conv, 512 - Stride 1, zeroPadding 1 - 14, 14, 512, 512, 3, 1, 1
+Relu,
+3x3 Conv, 512 - Stride 1, zeroPadding 1 - 14, 14, 512, 512, 3, 1, 1
+Relu,
+3x3 Conv, 512 - Stride 1, zeroPadding 1 - 14, 14, 512, 512, 3, 1, 1
+Relu,
 
 pool, 2x2 pixel, stride 2
 
-fc 4096
-Relu
-fc 4096
-Relu
-fc 1000
+fc, 4096 - 7, 7, 512
+Relu,
+fc, 4096 - 1, 1, 4096
+Relu,
+fc, 1000 - 1, 1, 4096
 
-SoftMax
+SoftMax, - 1, 1, 1000
 
 Source: 
 https://iq.opengenus.org/vgg19-architecture/
