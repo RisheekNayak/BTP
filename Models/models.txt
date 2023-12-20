@@ -1,5 +1,0 @@
-resnet50
-vgg16
-googlenet
-alexnet
-shufflenet
