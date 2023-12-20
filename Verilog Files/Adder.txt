@@ -1,4 +1,4 @@
-module vector_Adder_3d (
+module vector_Adder_3d(
   input [31:0] vector_a [0:1023][0:1023][0:1023],
   input [31:0] vector_b [0:1023][0:1023][0:1023],
   output [31:0] result_vector [0:1023][0:1023][0:1023]
