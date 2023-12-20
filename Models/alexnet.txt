@@ -1,0 +1,28 @@
+Input_size=227x227x3
+
+Conv, Not Save,
+Relu, Not Save,
+pool, Not Save, 3x3, stride = 2
+
+Conv, Not Save,
+Relu, Not Save,
+pool, Not Save, 3x3, stride = 2
+
+Conv, Not Save,
+pool, Not Save, 3x3, stride = 2
+
+Dropout, rate = 0.5 
+
+fc, Not Save, 4096 
+Relu, Not Save,
+
+Dropout, rate = 0.6, - 4096
+
+fc, Not Save, 4096 - 4096
+Relu, Not Save,
+
+fc, Not Save, 1000, 4096
+SoftMax, - 1000
+
+Source:
+https://www.analyticsvidhya.com/blog/2021/03/introduction-to-the-architecture-of-alexnet/? 

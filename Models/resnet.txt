@@ -1,0 +1,53 @@
+Input_size=227x227x3
+
+Conv, 7x7, Stride = 2, Padding = 3, Filters = 64 
+pool, Save, 3x3, stride = 2 
+Conv, 3x3, Stride = 1, Padding = 1, Filters = 64
+Relu, 
+Conv, 3x3, Stride = 1, Padding = 1, Filters = 64
+Relu,
+Adder, Save,
+Conv, 3x3, Stride = 1, Padding = 1, Filters = 64
+Relu,
+Conv, 3x3, Stride = 1, Padding = 1, Filters = 64
+Relu,
+Adder, Save,
+Conv, 3x3, Stride = 2, Padding = 0.5, Filters = 128
+Relu,
+Conv, 3x3, Stride = 1, Padding = 1, Filters = 128
+Relu,
+Adder, Save,
+Conv, 3x3, Stride = 1, Padding = 1, Filters = 128
+Relu,
+Conv, 3x3, Stride = 1, Padding = 1, Filters = 128
+Relu,
+Adder, Save,
+Conv, 3x3, Stride = 2, Padding = 0.5, Filters = 256
+Relu,
+Conv, 3x3, Stride = 1, Padding = 1, Filters = 256
+Relu,
+Adder, Save,
+Conv, 3x3, Stride = 1, Padding = 1, Filters = 256
+Relu,
+Conv, 3x3, Stride = 1, Padding = 1, Filters = 256
+Relu,
+Adder, Save,
+Conv, 3x3, Stride = 2, Padding = 0.5, Filters = 512
+Relu,
+Conv, 3x3, Stride = 1, Padding = 1, Filters = 512
+Relu,
+Adder, Save,
+Conv, 3x3, Stride = 1, Padding = 1, Filters = 512
+Relu,
+Conv, 3x3, Stride = 1, Padding = 1, Filters = 512
+Adder,
+Avg Pool, 7x7, Stride = 2, Padding = 0
+fc, 1000,
+Softmax, 1000,
+
+Source:
+https://www.researchgate.net/figure/Original-ResNet-18-Architecture_fig1_336642248
+https://iq.opengenus.org/resnet50-architecture/
+
+https://towardsdatascience.com/the-w3h-of-alexnet-vggnet-resnet-and-inception-7baaaecccc96
+https://www.researchgate.net/figure/Proposed-Modified-ResNet-18-architecture-for-Bangla-HCR-In-the-diagram-conv-stands-for_fig1_323063171

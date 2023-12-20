@@ -1,0 +1,44 @@
+module FullyConnectedLayer(
+    input wire clk,
+    input wire rst,
+    input wire [15:0] input_data[0:6][0:6][0:511], // 7x7x512 input
+    output wire [15:0] output_data[0:0][0:0][0:4095] // 1x1x4096 output
+);
+
+// Define parameters
+parameter INPUT_SIZE = 7 * 7 * 512; // Total input size
+parameter OUTPUT_SIZE = 4096; // FC layer output size
+
+// Define weight and bias parameters (initialize as needed)
+reg [15:0] weights[0:INPUT_SIZE-1][0:OUTPUT_SIZE-1]; // Weight matrix
+reg [15:0] bias[0:OUTPUT_SIZE-1]; // Biases
+
+// Intermediate result registers
+reg [31:0] result[0:OUTPUT_SIZE-1]; // Intermediate results
+
+// Fully connected operation
+always @(posedge clk or posedge rst) begin
+    if (rst) begin
+        // Reset logic here
+    end else begin
+        // Fully connected operation here
+        integer neuron_idx;
+        for (neuron_idx = 0; neuron_idx < OUTPUT_SIZE; neuron_idx = neuron_idx + 1) begin
+            result[neuron_idx] = bias[neuron_idx];
+            integer input_idx;
+            for (input_idx = 0; input_idx < INPUT_SIZE; input_idx = input_idx + 1) begin
+                result[neuron_idx] = result[neuron_idx] + input_data[input_idx] * weights[input_idx][neuron_idx];
+            end
+        end
+    end
+end
+
+// Output assignment
+always @(*) begin
+    integer neuron_idx;
+    for (neuron_idx = 0; neuron_idx < OUTPUT_SIZE; neuron_idx = neuron_idx + 1) begin
+        output_data[0][0][neuron_idx] = result[neuron_idx];
+    end
+end
+
+endmodule

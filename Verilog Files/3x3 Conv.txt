@@ -1,0 +1,59 @@
+module Conv2D(
+    input wire clk,
+    input wire rst,
+    input wire [7:0] input_data[0:1024][0:1024][0:1024], // 224x224x3 input, 112 112 64
+    output wire [7:0] output_data[0:1024][0:1024][0:1024] // 224x224x64 output
+);
+
+// Define parameters
+parameter WIDTH = 224; // Input and output width
+parameter HEIGHT = 224; // Input and output height
+parameter CHANNELS = 3; // Number of input channels
+parameter FILTERS = 64; // Number of output channels
+parameter KERNEL_SIZE = 3; // Kernel size (3x3)
+parameter STRIDE = 1; // Stride
+parameter PADDING = 1; // Padding
+
+// Define filter and bias parameters (initialize as needed)
+reg [7:0] filter[0:2][0:2][0:2][0:63]; // 3x3x3x64 filter (SUS)
+reg [7:0] bias[0:63]; // 64 biases
+
+// Intermediate result registers
+reg [15:0] result[0:223][0:223][0:63]; // 224x224x64 intermediate results
+
+// Convolution operation
+always @(posedge clk or posedge rst) begin
+    if (rst) begin
+        // Reset logic here
+    end else begin
+        // Convolution operation here
+        for (integer x = 0; x < WIDTH; x = x + STRIDE) begin
+            for (integer y = 0; y < HEIGHT; y = y + STRIDE) begin
+                for (integer filter_idx = 0; filter_idx < FILTERS; filter_idx = filter_idx + 1) begin
+                    result[x][y][filter_idx] = 0;
+                    for (integer i = 0; i < KERNEL_SIZE; i = i + 1) begin
+                        for (integer j = 0; j < KERNEL_SIZE; j = j + 1) begin
+                            for (integer k = 0; k < CHANNELS; k = k + 1) begin
+                                result[x][y][filter_idx] = result[x][y][filter_idx] + input_data[x + i - 1][y + j - 1][k] * filter[i][j][k][filter_idx];
+                            end
+                        end
+                    end
+                    result[x][y][filter_idx] = result[x][y][filter_idx] + bias[filter_idx];
+                end
+            end
+        end
+    end
+end
+
+// Output assignment
+always @(*) begin
+    for (integer x = 0; x < WIDTH; x = x + 1) begin
+        for (integer y = 0; y < HEIGHT; y = y + 1) begin
+            for (integer filter_idx = 0; filter_idx < FILTERS; filter_idx = filter_idx + 1) begin
+                output_data[x][y][filter_idx] = result[x][y][filter_idx];
+            end
+        end
+    end
+end
+
+endmodule

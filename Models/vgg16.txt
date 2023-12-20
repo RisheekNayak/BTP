@@ -1,0 +1,54 @@
+Input_size=224x224x3
+
+Conv, Not Save,
+Relu, Not Save,
+Conv, Not Save,
+Relu, Not Save,
+
+pool, Not Save, 2x2 pixel, stride 2
+
+Conv, Not Save,
+Relu, Not Save,
+Conv, Not Save,
+Relu, Not Save,
+
+pool, Not Save, 2x2 pixel, stride 2
+
+Conv, Not Save,
+Relu, Not Save,
+Conv, Not Save,
+Relu, Not Save,
+Conv, Not Save,
+Relu, Not Save,
+
+pool, Not Save, 2x2 pixel, stride 2
+
+Conv, Not Save,
+Relu, Not Save,
+Conv, Not Save,
+Relu, Not Save,
+Conv, Not Save,
+Relu, Not Save,
+
+pool, Not Save, 2x2 pixel, stride 2
+
+Conv, Not Save,
+Relu, Not Save,
+Conv, Not Save,
+Relu, Not Save,
+Conv, Not Save,
+Relu, Not Save,
+
+pool, Not Save, 2x2 pixel, stride 2
+
+fc, Not Save, 4096 - 7, 7, 512
+Relu, Not Save,
+fc, Not Save, 4096 - 1, 1, 4096
+Relu, Not Save,
+fc, Not Save, 1000 - 1, 1, 4096
+
+SoftMax, - 1, 1, 1000
+
+Source: 
+https://iq.opengenus.org/vgg19-architecture/
+https://medium.com/@mygreatlearning/everything-you-need-to-know-about-vgg16-7315defb5918

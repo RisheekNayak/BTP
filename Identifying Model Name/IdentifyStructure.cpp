@@ -2,20 +2,6 @@
 
 using namespace std;
 
-unordered_set<string> model_list;
-
-void all_models()
-{
-    string path = "models.txt";
-    fstream file_handler (path.c_str());
-
-    string line;
-    while (getline(file_handler, line))
-        model_list.insert(line);  
-
-    file_handler.close();  
-}
-
 string find_model(string file_name)
 {
     fstream file_handler (file_name.c_str());
@@ -38,6 +24,7 @@ string find_model(string file_name)
                 found = true;
                 continue;
             }
+
             if (found)
             {
                 bool start = false;
@@ -62,28 +49,15 @@ string find_model(string file_name)
 
     file_handler.close();
 
-    return "NotFound";
-}
-
-void manual(string file_name)
-{
-    fstream file_handler (file_name.c_str());
-    string line, model;
-
-    while (getline(file_handler, line))
-    {
-        
-    }
+    return "Model Not Found";
 }
 
 int main() 
-{
-    all_models();
-    
+{    
     string file_name = "resnet50.py";
     string model = find_model(file_name);
 
-    cout << model;
+    cout << "The model in the .py file is " << model;
 
     return 0;
 }
