@@ -1,4 +1,4 @@
-module softmax (
+module softmax(
   input signed [15:0] x [0:4095], // Input array with 4096 elements
   output reg signed [15:0] y [0:4095], // Output array with 4096 elements
   output reg [11:0] index // Index of the maximum value in the input array
