@@ -1,0 +1,15 @@
+Sources:
+
+Vgg16:
+https://iq.opengenus.org/vgg19-architecture/
+https://medium.com/@mygreatlearning/everything-you-need-to-know-about-vgg16-7315defb5918
+
+Alexnet:
+https://www.analyticsvidhya.com/blog/2021/03/introduction-to-the-architecture-of-alexnet/? 
+
+Resnet:
+https://www.researchgate.net/figure/Original-ResNet-18-Architecture_fig1_336642248
+https://iq.opengenus.org/resnet50-architecture/
+
+https://towardsdatascience.com/the-w3h-of-alexnet-vggnet-resnet-and-inception-7baaaecccc96
+https://www.researchgate.net/figure/Proposed-Modified-ResNet-18-architecture-for-Bangla-HCR-In-the-diagram-conv-stands-for_fig1_323063171

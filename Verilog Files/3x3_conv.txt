@@ -20,20 +20,24 @@ reg [7:0] bias[0:63]; // 64 biases
 
 // Intermediate result registers
 reg [15:0] result[0:223][0:223][0:63]; // 224x224x64 intermediate results
+integer x, y, i, j, k, filter_idx;
 
 // Convolution operation
 always @(posedge clk or posedge rst) begin
+    
     if (rst) begin
+	
         // Reset logic here
     end else begin
         // Convolution operation here
-        for (integer x = 0; x < WIDTH; x = x + STRIDE) begin
-            for (integer y = 0; y < HEIGHT; y = y + STRIDE) begin
-                for (integer filter_idx = 0; filter_idx < FILTERS; filter_idx = filter_idx + 1) begin
+	
+        for (x = 0; x < WIDTH; x = x + STRIDE) begin
+            for (y = 0; y < HEIGHT; y = y + STRIDE) begin
+                for (filter_idx = 0; filter_idx < FILTERS; filter_idx = filter_idx + 1) begin
                     result[x][y][filter_idx] = 0;
-                    for (integer i = 0; i < KERNEL_SIZE; i = i + 1) begin
-                        for (integer j = 0; j < KERNEL_SIZE; j = j + 1) begin
-                            for (integer k = 0; k < CHANNELS; k = k + 1) begin
+                    for (i = 0; i < KERNEL_SIZE; i = i + 1) begin
+                        for (j = 0; j < KERNEL_SIZE; j = j + 1) begin
+                            for (k = 0; k < CHANNELS; k = k + 1) begin
                                 result[x][y][filter_idx] = result[x][y][filter_idx] + input_data[x + i - 1][y + j - 1][k] * filter[i][j][k][filter_idx];
                             end
                         end
@@ -47,9 +51,9 @@ end
 
 // Output assignment
 always @(*) begin
-    for (integer x = 0; x < WIDTH; x = x + 1) begin
-        for (integer y = 0; y < HEIGHT; y = y + 1) begin
-            for (integer filter_idx = 0; filter_idx < FILTERS; filter_idx = filter_idx + 1) begin
+    for (x = 0; x < WIDTH; x = x + 1) begin
+        for (y = 0; y < HEIGHT; y = y + 1) begin
+            for (filter_idx = 0; filter_idx < FILTERS; filter_idx = filter_idx + 1) begin
                 output_data[x][y][filter_idx] = result[x][y][filter_idx];
             end
         end

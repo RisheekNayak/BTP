@@ -44,10 +44,3 @@ Adder,
 Avg Pool, 7x7, Stride = 2, Padding = 0
 fc, 1000,
 SoftMax, 1000,
-
-Source:
-https://www.researchgate.net/figure/Original-ResNet-18-Architecture_fig1_336642248
-https://iq.opengenus.org/resnet50-architecture/
-
-https://towardsdatascience.com/the-w3h-of-alexnet-vggnet-resnet-and-inception-7baaaecccc96
-https://www.researchgate.net/figure/Proposed-Modified-ResNet-18-architecture-for-Bangla-HCR-In-the-diagram-conv-stands-for_fig1_323063171

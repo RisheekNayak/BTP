@@ -1,1 +1,0 @@
-google net, vgg16, resnet, squeeze net / suffle net, alex net
