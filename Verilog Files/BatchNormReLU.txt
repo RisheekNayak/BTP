@@ -1,0 +1,38 @@
+module BatchNormReLU(
+  input wire [31:0] in_data,
+  output wire [31:0] out_data
+);
+
+  parameter EPSILON = 1e-5; // Small constant to avoid division by zero
+
+  // Batch normalization parameters
+  reg [31:0] scale = 1.0;
+  reg [31:0] shift = 0.0;
+  reg [31:0] mean = 0.0;
+  reg [31:0] variance = 1.0;
+
+  // Batch normalization and ReLU function
+  function [31:0] batch_norm_relu;
+    input [31:0] x;
+    output [31:0] y;
+
+    reg [31:0] normalized;
+    reg [31:0] relu_output;
+
+    initial begin
+      // Batch normalization
+      normalized = (x - mean) / sqrt(variance + EPSILON);
+      normalized = scale * normalized + shift;
+
+      // ReLU activation
+      relu_output = (normalized > 0) ? normalized : 0;
+
+    end
+
+    assign y = relu_output;
+  endfunction
+
+  // Instantiate the batch_norm_relu function
+  assign out_data = batch_norm_relu(in_data);
+
+endmodule

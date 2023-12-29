@@ -13,3 +13,11 @@ https://iq.opengenus.org/resnet50-architecture/
 
 https://towardsdatascience.com/the-w3h-of-alexnet-vggnet-resnet-and-inception-7baaaecccc96
 https://www.researchgate.net/figure/Proposed-Modified-ResNet-18-architecture-for-Bangla-HCR-In-the-diagram-conv-stands-for_fig1_323063171
+
+Squeezenet:
+https://towardsdatascience.com/review-squeezenet-image-classification-e7414825581a
+https://medium.com/@avidrishik/squeezenets-architecture-compressed-neural-network-7741d24ca56f
+
+Shufflenet:
+https://medium.com/syncedreview/shufflenet-an-extremely-efficient-convolutional-neural-network-for-mobile-devices-72c6f5b01651
+https://towardsdatascience.com/review-shufflenet-v1-light-weight-model-image-classification-5b253dfe982f

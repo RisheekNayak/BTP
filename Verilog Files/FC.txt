@@ -1,11 +1,12 @@
 module FullyConnectedLayer(
-       input wire clk,
-input wire rst,
-input wire [15:0] dout_relu[0:6][0:6][0:511], // 7x7x512 input
-output reg [15:0] output_data[0:0][0:0][0:4095] // 1x1x4096 output
+    input wire clk,
+    input wire rst,
+    input wire [15:0] dout_relu[0:6][0:6][0:511], // 7x7x512 input
+    output reg [15:0] output_data[0:0][0:0][0:4095] // 1x1x4096 output
+    
 );
 integer input_idx;
-
+integer neuron_idx;
 parameter INPUT_SIZE = 7*7 ;             //* 7 * 512; // Total input size
 parameter OUTPUT_SIZE = 500;         //;4096; // FC layer output size
 
@@ -15,13 +16,14 @@ reg [15:0] bias[0:OUTPUT_SIZE-1]; // Biases
 
 // Intermediate result registers
 reg [31:0] result[0:OUTPUT_SIZE-1]; // Intermediate results
-integer neuron_idx;
+
 // Fully connected operation
 always @(posedge clk or posedge rst) begin
 if (rst) begin
 // Reset logic here
 end else begin
 // Fully connected operation here
+
 for (neuron_idx = 0; neuron_idx < OUTPUT_SIZE; neuron_idx = neuron_idx + 1) begin
 result[neuron_idx] = bias[neuron_idx];
 
@@ -34,7 +36,7 @@ end
 
 // Output assignment
 always @(*) begin
-neuron_idx=0;
+
 for (neuron_idx = 0; neuron_idx < OUTPUT_SIZE; neuron_idx = neuron_idx + 1) begin
 output_data[0][0][neuron_idx] = result[neuron_idx];
 end

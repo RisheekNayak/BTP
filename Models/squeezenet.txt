@@ -1,0 +1,134 @@
+Input_size=224x224x3, {Number of inputs, Input Indices, Layer Name, Output Index}
+
+1,None,Conv, 0
+1,0,Maxpool,1 3x3 kernel size stride = 2
+
+1,1,Conv, 2
+1,1,Conv, 3
+1,1,Conv, 4
+1,1,Conv, 5
+4,5,2,3,4,Adder, 6
+1,6,Conv, 7
+1,6,Conv, 8
+1,6,Conv, 9
+1,6,Conv, 10
+1,6,Conv, 11
+1,6,Conv, 12
+1,6,Conv, 13
+1,6,Conv, 14
+8,14,7,8,9,10,11,12,13,Adder, 15
+
+1,15,Conv, 16
+1,15,Conv, 17
+1,15,Conv, 18
+1,15,Conv, 19
+4,19,16,17,18,Adder, 20
+1,20,Conv, 21
+1,20,Conv, 22
+1,20,Conv, 23
+1,20,Conv, 24
+1,20,Conv, 25
+1,20,Conv, 26
+1,20,Conv, 27
+1,20,Conv, 28
+8,28,21,22,23,24,25,26,27,Adder, 29
+
+1,29,Conv, 30
+1,29,Conv, 31
+1,29,Conv, 32
+1,29,Conv, 33
+4,33,31,32,33,Adder, 34
+1,34,Conv, 35
+1,34,Conv, 36
+1,34,Conv, 37
+1,34,Conv, 38
+1,34,Conv, 39
+1,34,Conv, 40
+1,34,Conv, 41
+1,34,Conv, 42
+8,42,35,36,37,38,39,40,41,Adder, 43
+
+1,43,Maxpool,44 3x3 kernel size stride = 2
+
+1,44,Conv, 45
+1,44,Conv, 46
+1,44,Conv, 47
+1,44,Conv, 48
+4,48,45,46,47,Adder, 49
+1,49,Conv, 50
+1,49,Conv, 51
+1,49,Conv, 52
+1,49,Conv, 53
+1,49,Conv, 54
+1,49,Conv, 55
+1,49,Conv, 56
+1,49,Conv, 57
+8,57,50,51,52,53,54,55,56,Adder, 58
+
+1,58,Conv, 59
+1,58,Conv, 60
+1,58,Conv, 61
+1,58,Conv, 62
+4,62,59,60,61,Adder, 63
+1,63,Conv, 64
+1,63,Conv, 65
+1,63,Conv, 66
+1,63,Conv, 67
+1,63,Conv, 68
+1,63,Conv, 69
+1,63,Conv, 70
+1,63,Conv, 71
+8,71,64,65,66,67,68,69,70,Adder, 72
+
+1,72,Conv, 73
+1,72,Conv, 74
+1,72,Conv, 75
+1,72,Conv, 76
+4,76,73,74,75,Adder, 77
+1,77,Conv, 78
+1,77,Conv, 79
+1,77,Conv, 80
+1,77,Conv, 81
+1,77,Conv, 82
+1,77,Conv, 83
+1,77,Conv, 84
+1,77,Conv, 85
+8,85,78,79,80,81,82,83,84,Adder, 86
+
+1,86,Conv, 87
+1,86,Conv, 88
+1,86,Conv, 89
+1,86,Conv, 90
+4,90,87,88,89,Adder, 91
+1,91,Conv, 92
+1,91,Conv, 93
+1,91,Conv, 94
+1,91,Conv, 95
+1,91,Conv, 96
+1,91,Conv, 97
+1,91,Conv, 98
+1,91,Conv, 99
+8,99,92,93,94,95,96,97,98,Adder, 100
+
+1,100,Maxpool,101 3x3 kernel size stride = 2
+
+1,101,Conv, 102
+1,101,Conv, 103
+1,101,Conv, 104
+1,101,Conv, 105
+4,105,102,103,104,Adder, 106
+1,106,Conv, 107
+1,106,Conv, 108
+1,106,Conv, 109
+1,106,Conv, 110
+1,106,Conv, 111
+1,106,Conv, 112
+1,106,Conv, 113
+1,106,Conv, 114
+8,114,107,108,109,110,111,112,113,Adder, 115
+
+1,115,Conv, 116
+
+1,116,Avgpool, 117 - 13x13 kernel size stride = 1
+
+1,117,Softmax, 118
