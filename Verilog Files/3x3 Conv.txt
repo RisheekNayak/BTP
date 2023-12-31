@@ -1,8 +1,8 @@
 module Conv2D (
     input wire clk,
     input wire rst,
-    input wire [7:0] input_data[0:1024][0:1024][0:1024], // 224x224x3 input, 112 112 64
-    output reg [7:0] output_data[0:1024][0:1024][0:1024] // 224x224x64 output
+    input wire [7:0][(224*224*3)-1:0]input_data, // Flattened 224x224x3 input
+    output reg [7:0][(224*224*64)-1:0]output_data // Flattened 224x224x64 output
 );
 
 // Define parameters
@@ -19,8 +19,9 @@ reg [7:0] filter[0:2][0:2][0:2][0:63]; // 3x3x3x64 filter (SUS)
 reg [7:0] bias[0:63]; // 64 biases
 
 // Intermediate result registers
-reg [15:0] result[0:223][0:223][0:63]; // 224x224x64 intermediate results
-integer x, y, filter_idx, i, j, k; 
+reg [15:0] result[0:(224*224*64)-1]; // 224x224x64 intermediate results
+integer x, y, filter_idx, i, j, k;
+
 // Convolution operation
 always @(posedge clk or posedge rst) begin
     if (rst) begin
@@ -30,15 +31,15 @@ always @(posedge clk or posedge rst) begin
         for (x = 0; x < WIDTH; x = x + STRIDE) begin
             for ( y = 0; y < HEIGHT; y = y + STRIDE) begin
                 for ( filter_idx = 0; filter_idx < FILTERS; filter_idx = filter_idx + 1) begin
-                    result[x][y][filter_idx] = 0;
+                    result[(filter_idx*(WIDTH*HEIGHT)) + (y*WIDTH) + x] = 8'h00;
                     for (i = 0; i < KERNEL_SIZE; i = i + 1) begin
                         for ( j = 0; j < KERNEL_SIZE; j = j + 1) begin
                             for ( k = 0; k < CHANNELS; k = k + 1) begin
-                                result[x][y][filter_idx] = result[x][y][filter_idx] + input_data[x + i - 1][y + j - 1][k] * filter[i][j][k][filter_idx];
+                                result[(filter_idx*(WIDTH*HEIGHT)) + (y*WIDTH) + x] = result[(filter_idx*(WIDTH*HEIGHT)) + (y*WIDTH) + x] + input_data[((y + j - 1)*WIDTH) + (x + i - 1) + (k*(WIDTH*HEIGHT))] * filter[i][j][k][filter_idx];
                             end
                         end
                     end
-                    result[x][y][filter_idx] = result[x][y][filter_idx] + bias[filter_idx];
+                    result[(filter_idx*(WIDTH*HEIGHT)) + (y*WIDTH) + x] = result[(filter_idx*(WIDTH*HEIGHT)) + (y*WIDTH) + x] + bias[filter_idx];
                 end
             end
         end
@@ -50,9 +51,10 @@ always @(*) begin
     for ( x = 0; x < WIDTH; x = x + 1) begin
         for ( y = 0; y < HEIGHT; y = y + 1) begin
             for ( filter_idx = 0; filter_idx < FILTERS; filter_idx = filter_idx + 1) begin
-                output_data[x][y][filter_idx] = result[x][y][filter_idx];
+                output_data[(filter_idx*(WIDTH*HEIGHT)) + (y*WIDTH) + x] = result[(filter_idx*(WIDTH*HEIGHT)) + (y*WIDTH) + x];
             end
         end
     end
 end
+
 endmodule
