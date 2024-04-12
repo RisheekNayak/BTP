@@ -55,6 +55,6 @@ Input_size=227x227x3, {Number of inputs, Input Indices, Layer Name, Output Index
 
 2,37,34,Adder, 38
 
-1,38,Avgpool, 39 - Avg pool 7x7 kernel size Stride = 2 Padding = 0
+1,38,Maxpool, 39 - But use Avg pool 7x7 kernel size Stride = 2 Padding = 0
 1,39,FC, 40 - 1000
 1,40,Softmax, 41 - 1000

@@ -129,6 +129,6 @@ Input_size=224x224x3, {Number of inputs, Input Indices, Layer Name, Output Index
 
 1,115,Conv, 116
 
-1,116,Avgpool, 117 - 13x13 kernel size stride = 1
+1,116,Maxpool, 117 - But use Avgpool 13x13 kernel size stride = 1
 
 1,117,Softmax, 118
